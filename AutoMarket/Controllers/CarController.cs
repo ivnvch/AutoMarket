@@ -1,37 +1,25 @@
-﻿using AutoMarket.DAL.Interfaces;
+﻿using AutoMarket.BusinessLogic.Interfaces;
+using AutoMarket.DAL.Interfaces;
 using AutoMarket.Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMarket.Controllers
 {
-    //[ApiController]
+   // [ApiController]
     public class CarController : Controller
     {
-        private readonly ICarRepository _carRepository;
+        private readonly ICarService _carService;
 
-        public CarController(ICarRepository carRepository)
+        public CarController(ICarService carService)
         {
-            _carRepository = carRepository;
+            _carService = carService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Select()
         {
-            var response = await _carRepository.Select();
-
-            //Car car = new Car()
-            //{
-            //    Mark = "BMW",
-            //    Model = "M5", 
-            //    DateCreate = DateTime.Now,
-            //    Price = 250000,
-            //    Description = "Пафосная тачка",
-            //    Speed = 300,
-            //    TypeCar = Domain.Enum.TypeCar.Sedan
-            //};
-            //await _carRepository.Create(car);
-            //await _carRepository.Delete(car);
-            return View(response);
+            var response = await _carService.GetCars();
+            return View(response.Data);
         }
     }
 }

@@ -1,3 +1,5 @@
+using AutoMarket.BusinessLogic.Implementations;
+using AutoMarket.BusinessLogic.Interfaces;
 using AutoMarket.DAL;
 using AutoMarket.DAL.Interfaces;
 using AutoMarket.DAL.Repositories;
@@ -8,6 +10,7 @@ string connection = builder.Configuration.GetConnectionString("DefaultConnection
 builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(connection));
 
 builder.Services.AddTransient<ICarRepository, CarRepository>();
+builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddEndpointsApiExplorer();
 var app = builder.Build();

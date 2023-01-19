@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket", "AutoMarket\AutoMarket.csproj", "{3488D3DE-2755-47C4-B92A-4D334B355937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket", "AutoMarket\AutoMarket.csproj", "{3488D3DE-2755-47C4-B92A-4D334B355937}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6C091224-C8EE-44B2-9E23-DCA5930CC00F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.Domain", "AutoMarket.Domain\AutoMarket.Domain.csproj", "{987BB353-E3E0-4756-80D8-F98782D156C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket.Domain", "AutoMarket.Domain\AutoMarket.Domain.csproj", "{987BB353-E3E0-4756-80D8-F98782D156C1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{7C53A730-2F7F-49D4-AEE0-9D670B7C72C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.DAL", "AutoMarket.DAL\AutoMarket.DAL.csproj", "{875EAEFD-6DAE-443A-A9FB-266219673953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AutoMarket.DAL", "AutoMarket.DAL\AutoMarket.DAL.csproj", "{875EAEFD-6DAE-443A-A9FB-266219673953}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLogic", "{E9FD5EC4-1E74-4187-AE65-CA3E8E0FCAA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.BusinessLogic", "AutoMarket.BusinessLogic\AutoMarket.BusinessLogic.csproj", "{DA66E5E8-6F29-469E-B273-A8D035C60C03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{875EAEFD-6DAE-443A-A9FB-266219673953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{875EAEFD-6DAE-443A-A9FB-266219673953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{875EAEFD-6DAE-443A-A9FB-266219673953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{987BB353-E3E0-4756-80D8-F98782D156C1} = {6C091224-C8EE-44B2-9E23-DCA5930CC00F}
 		{875EAEFD-6DAE-443A-A9FB-266219673953} = {7C53A730-2F7F-49D4-AEE0-9D670B7C72C9}
+		{DA66E5E8-6F29-469E-B273-A8D035C60C03} = {E9FD5EC4-1E74-4187-AE65-CA3E8E0FCAA2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92D95ABF-330A-413A-A2BC-EABAC27B319A}
