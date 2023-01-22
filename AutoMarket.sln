@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogic", "BusinessLo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.BusinessLogic", "AutoMarket.BusinessLogic\AutoMarket.BusinessLogic.csproj", "{DA66E5E8-6F29-469E-B273-A8D035C60C03}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6DC6934A-781A-4C54-851D-71B7C15A852C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoMarket.Common", "AutoMarket.Common\AutoMarket.Common.csproj", "{C631F4AD-754F-491B-AEC2-35CE6F1E2005}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,10 @@ Global
 		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA66E5E8-6F29-469E-B273-A8D035C60C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C631F4AD-754F-491B-AEC2-35CE6F1E2005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C631F4AD-754F-491B-AEC2-35CE6F1E2005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C631F4AD-754F-491B-AEC2-35CE6F1E2005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C631F4AD-754F-491B-AEC2-35CE6F1E2005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +55,7 @@ Global
 		{987BB353-E3E0-4756-80D8-F98782D156C1} = {6C091224-C8EE-44B2-9E23-DCA5930CC00F}
 		{875EAEFD-6DAE-443A-A9FB-266219673953} = {7C53A730-2F7F-49D4-AEE0-9D670B7C72C9}
 		{DA66E5E8-6F29-469E-B273-A8D035C60C03} = {E9FD5EC4-1E74-4187-AE65-CA3E8E0FCAA2}
+		{C631F4AD-754F-491B-AEC2-35CE6F1E2005} = {6DC6934A-781A-4C54-851D-71B7C15A852C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {92D95ABF-330A-413A-A2BC-EABAC27B319A}
