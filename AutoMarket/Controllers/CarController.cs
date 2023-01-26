@@ -23,7 +23,7 @@ namespace AutoMarket.Controllers
             var response = await _carService.GetCars();
             if (response.StatusCode == Domain.Enum.StatusCode.Ok)
             {
-                return View(response.Data);
+                return View(response.Data.ToList());
             }
             return RedirectToAction("Error");
         }
