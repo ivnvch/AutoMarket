@@ -19,8 +19,4 @@
     <ProjectReference Include="..\AutoMarket.DAL\AutoMarket.DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\lib\" />
-  </ItemGroup>
-
 </Project>
