@@ -3,8 +3,8 @@
 @*@model AutoMarket.Common.ViewModels.Car.CarViewModel
 *@
 @{
-    ViewBag.Title = "title";
-    Layout = "_Layout";
+    ViewBag.Title = "Сведения об Автомобиле";
+    Layout = null;
 }
 
 <div style="padding: 10px;"></div>
@@ -21,7 +21,6 @@
                 <p class="card-text"><b>Стоимость: </b>@Model?.Price ₽</p>
                 <p class="card-text"><b>Тип: </b>@Model?.TypeCar</p>
                 <p class="card-text"><b>Модель: </b>@Model.Model</p>
-@*                <p class="card-text"><small class="text-muted">Дата выпуска - @Model?.DateCreate</small></p>*@
             </div>
         </div>
         <div class="col-md-4">
