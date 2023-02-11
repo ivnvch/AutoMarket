@@ -1,79 +1,117 @@
 ﻿@using AutoMarket.Common.ViewModels.Car
 @using AutoMarket.Domain.Entity
-@model IEnumerable<Car>
+@model List<Car>
 
 @{
-    ViewBag.Title = "Список автомобилей";
+    ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
+<style>
+    .card-buttons-group {
+        text-align: right;
+        padding: 10px;
+    }
+</style>
 
-@*<div class="container">
-   <div class="row">
-        <div class="col-md-4" >
-            <h5>Марки автомобилей</h5>
-            @foreach(var car in Model)
-            {
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Марка: @car.Mark</li>
-                </ul>
-            }
-        </div>
+<div class="card-buttons-group">
+    <button class="btn btn-danger" id='hideCardsId'>Скрыть</button>
+    <button class='btn btn-success' id='showCardsId'>Показать</button>
+</div>
 
-       <div class="col-md-4">
-            <h5>Модели автомобилей</h5>
-            @foreach(var car in Model)
-            {
-               <div class="col-md-4">
-                    <div class="col">
-                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Модель: @car.Model</li>
-                    </ul>
-                    </div>
-               </div>
-            }
-       </div>
-
-
-    </div>
-</div>*@
-
-
-
-
-<p>
-@Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model=> model.Mark)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model=>model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model=>model.Speed)
-            </th>
-        </tr>
-      
-@foreach (var item in Model)
+<div style="padding: 10px;"></div>
+@if (Model.Count == 0)
 {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem=>item.Mark)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem=>item.Model)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem=>item.Speed)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-            @Html.ActionLink("Details", "Details", new {id=item.Id}) |
-            @Html.ActionLink("Delete", "Delete", new {id=item.Id})
-        </td>
-    </tr>
+    <div class="card col-md-12">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="https://images.wallpaperscraft.ru/image/single/bmw_fary_podsvetka_137326_1280x720.jpg" 
+                     class="img-fluid rounded-start rounded">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Список машин пуст :(</h5>
+                    <p class="card-text">
+                        Список пополниться позже, не расстраивайтесь
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="padding: 10px;"></div>
+    <div class="card text-center">
+        <div class="card-header">
+            <ul class="nav nav-pills card-header-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Active</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
 }
-</table>
+else
+{
+    <div class="row">
+        @foreach (var car in Model)
+        {
+            <div class="row row-cols-1 col-md-4 text-center">
+                <div class="col" style="padding: 30px;">
+                    <div class="card">
+                        <img src="https://fikiwiki.com/uploads/posts/2022-02/1644909390_10-fikiwiki-com-p-kartinki-mashini-audi-11.jpg" class="card-img-top" alt="@car.Mark">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Mark</h5>
+                            <p class="card-text">@car.Description</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Стоимость: @car.Price ₽</li>
+                            <li class="list-group-item">@car.TypeCar</li>
+                        </ul>
+                        <div class="card-body">
+                            <a asp-controller="Car" asp-action="GetCar" asp-route-id="@car.Id" class="card-link">Перейти</a>
+                            @* <a asp-controller="Basket" asp-action="Add" asp-route-id="@id" class="card-link">Добавить</a> *@
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <hr/>
+                                <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Удалить</a>
+                                <a asp-controller="Car" asp-action="Save" asp-route-id="@car.Id" class="btn btn-primary">Изменить</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>   
+}
+
+@section pageScripts {
+    <script>
+        const hideCardElement = $('#hideCardsId');
+        const showCardElement = $('#showCardsId');
+        const cardElement = $('.card');
+        
+        const interval = 2000;
+        
+        hideCardElement.click(function(){
+            hideCardElement.hide(interval);
+            showCardElement.show(interval);
+            cardElement.hide(interval);
+        });
+        
+        showCardElement.click(function () {
+            hideCardElement.show(interval);
+            showCardElement.hide(interval);
+            cardElement.show(interval);
+        });
+    </script>
+}

@@ -25,16 +25,21 @@
     <link rel="stylesheet" href="../css/flaticon.css">
     <link rel="stylesheet" href="../css/icomoon.css">
     <link rel="stylesheet" href="../css/style.css">
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/site.css"/>
+    <link rel="stylesheet" href="../css/menu.css"/>
+    <link rel="stylesheet" href="../css/paragraph.css"/>
+    <link rel="stylesheet" href="../css/card.css"/>
+    <link rel="stylesheet" href="../css/label.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
   </head>
 
   <body>
-    
-      <div class="container">
-        <main role="main">
-            @RenderBody()
-        </main>
-      </div>
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <header>
+         <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
 	      <a class="navbar-brand" href="index.html">Car<span>Book</span></a>
 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,6 +59,12 @@
 	      </div>
 	    </div>
 	  </nav>
+    </header>
+      <div class="container">
+        <main role="main">
+            @RenderBody()
+        </main>
+      </div>
     <!-- END nav -->
     
     <div class="hero-wrap ftco-degree-bg" style="background-image: url('images/bg_1.jpg')" data-stellar-background-ratio="0.5">
@@ -74,83 +85,6 @@
     </div>
 
      
-
-    @*Отображает карточки автомобилей*@
-   @* <section class="ftco-section ftco-no-pt bg-light">
-    	<div class="container">
-    		<div class="row justify-content-center">
-          <div class="col-md-12 heading-section text-center ftco-animate mb-5">
-          	<span class="subheading">What we offer</span>
-            <h2 class="mb-2">Feeatured Vehicles</h2>
-          </div>
-        </div>
-    		<div class="row">
-    			<div class="col-md-12">
-    				<div class="carousel-car owl-carousel">
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('images/car-1.jpg')">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('images/car-2.jpg')">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('images/car-3.jpg')">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    					<div class="item">
-    						<div class="car-wrap rounded ftco-animate">
-		    					<div class="img rounded d-flex align-items-end" style="background-image: url('images/car-4.jpg')">
-		    					</div>
-		    					<div class="text">
-		    						<h2 class="mb-0"><a href="#">Mercedes Grand Sedan</a></h2>
-		    						<div class="d-flex mb-3">
-			    						<span class="cat">Cheverolet</span>
-			    						<p class="price ml-auto">$500 <span>/day</span></p>
-		    						</div>
-		    						<p class="d-flex mb-0 d-block"><a href="#" class="btn btn-primary py-2 mr-1">Book now</a> <a href="#" class="btn btn-secondary py-2 ml-1">Details</a></p>
-		    					</div>
-		    				</div>
-    					</div>
-    				</div>
-    			</div>
-    		</div>
-    	</div>
-    </section>*@
-	
-
-
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
         <div class="row mb-5">
@@ -206,7 +140,7 @@
           <div class="col-md-12 text-center">
 
             <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://vk.com/dmitry_tarasovets" target="_blank">SomeOne</a>
   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
           </div>
         </div>
@@ -237,6 +171,7 @@
   <script src="../js/google-map.js"></script>
   <script src="../js/main.js"></script>
     
+  @await RenderSectionAsync("pageScripts", required: false)
   </body>
 </html>
 @*<head>
