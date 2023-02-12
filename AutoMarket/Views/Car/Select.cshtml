@@ -79,7 +79,6 @@ else
                         </ul>
                         <div class="card-body">
                             <a asp-controller="Car" asp-action="GetCar" asp-route-id="@car.Id" class="card-link">Перейти</a>
-                            @* <a asp-controller="Basket" asp-action="Add" asp-route-id="@id" class="card-link">Добавить</a> *@
                             @if (User.IsInRole("Admin"))
                             {
                                 <hr/>
