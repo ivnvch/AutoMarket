@@ -1,25 +1,24 @@
-﻿
-using AutoMarket.BusinessLogic.Interfaces;
+﻿using AutoMarket.BusinessLogic.Interfaces;
 using AutoMarket.Common.ViewModels.Car;
 using AutoMarket.DAL.Interfaces;
 using AutoMarket.Domain.Entity;
 using AutoMarket.Domain.Enum;
 using AutoMarket.Domain.Response;
+using Microsoft.EntityFrameworkCore;
 
 namespace AutoMarket.BusinessLogic.Implementations
 {
     public class CarService : ICarService
     {
-        private readonly ICarRepository _carRepository;
+        private readonly IBaseRepository<Car> _baseRepository;
 
-        public CarService(ICarRepository carRepository)
+        public CarService(IBaseRepository<Car> baseRepository)
         {
-            _carRepository = carRepository;
+            _baseRepository = baseRepository;
         }
 
-        public async Task<IBaseResponse<CarViewModel>> Create(CarViewModel carViewModel)
+        public async Task<IBaseResponse<Car>> Create(CarViewModel carViewModel)
         {
-            var baseResponse = new BaseResponse<CarViewModel>();
             try
             {
                 var car = new Car()
@@ -34,18 +33,22 @@ namespace AutoMarket.BusinessLogic.Implementations
 
                 };
 
-                await _carRepository.Create(car);
+                await _baseRepository.Create(car);
+
+                return new BaseResponse<Car>()
+                {
+                    StatusCode = StatusCode.Ok,
+                    Data = car
+                };
             }
             catch (Exception ex)
             {
-                return new BaseResponse<CarViewModel>()
+                return new BaseResponse<Car>()
                 {
                     Description = $"[Create] : {ex.Message}",
-                    StatusCode = Domain.Enum.StatusCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError
                 };
-            }
-            return baseResponse;
-           
+            }           
         }
 
         public async Task<IBaseResponse<bool>> Delete(int id)
@@ -53,18 +56,27 @@ namespace AutoMarket.BusinessLogic.Implementations
             var baseResponse = new BaseResponse<bool>();
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _baseRepository.GetAll().FirstOrDefaultAsync(x=> x.Id == id);
                 if (car == null)
                 {
                     baseResponse.Description = "Car not found";
                     baseResponse.StatusCode = Domain.Enum.StatusCode.CarNotFound;
                     baseResponse.Data = false;
-                    return baseResponse;
+                    return new BaseResponse<bool>()
+                    {
+                        Description = "Car not found",
+                        StatusCode = Domain.Enum.StatusCode.CarNotFound,
+                        Data = false
+                    };
                 }
 
-                await _carRepository.Delete(car);
+                await _baseRepository.Delete(car);
 
-                return baseResponse;
+                return new BaseResponse<bool>()
+                {
+                    Data = true,
+                    StatusCode = StatusCode.Ok
+                };
             }
             catch (Exception ex)
             {
@@ -118,7 +130,7 @@ namespace AutoMarket.BusinessLogic.Implementations
 
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _baseRepository.(id);
                 if (car != null)
                 {
                     baseResponse.Data = car;
@@ -169,13 +181,13 @@ namespace AutoMarket.BusinessLogic.Implementations
         }
 
 
-        public async Task<IBaseResponse<IEnumerable<Car>>> GetCars()
+        public async Task<IBaseResponse<IEnumerable<Car>>> GetAll()
         {
            var baseResponse = new BaseResponse<IEnumerable<Car>>();
 
             try
             {
-                var cars = await _carRepository.Select();
+                var cars = await _carRepository.GetAll();
                 if (cars.Count == 0)
                 {
                     baseResponse.Description = "Найдено 0 элементов";
@@ -194,6 +206,11 @@ namespace AutoMarket.BusinessLogic.Implementations
                     StatusCode = Domain.Enum.StatusCode.InternalServerError
                 };
             }   
+        }
+
+        public Task<IBaseResponse<IEnumerable<Car>>> GetCars()
+        {
+            throw new NotImplementedException();
         }
     }
 }
