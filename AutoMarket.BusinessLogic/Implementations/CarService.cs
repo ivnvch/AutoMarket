@@ -90,16 +90,16 @@ namespace AutoMarket.BusinessLogic.Implementations
 
         public async Task<IBaseResponse<Car>> Edit(int id, CarViewModel carViewModel)
         {
-            var baseResponse = new BaseResponse<Car>();
-
             try
             {
-                var car = await _carRepository.Get(id);
+                var car = await _baseRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car == null)
                 {
-                    baseResponse.StatusCode = StatusCode.CarNotFound;
-                    baseResponse.Description = "Car not found";
-                    return baseResponse;
+                    return new BaseResponse<Car>()
+                    {
+                        StatusCode = StatusCode.CarNotFound,
+                        Description = "Car not found"
+                    };
                 }
 
                 car.Mark = carViewModel.Mark;
@@ -110,16 +110,20 @@ namespace AutoMarket.BusinessLogic.Implementations
                 car.Description = carViewModel.Description;
 
 
-                await _carRepository.Update(car);
-                return baseResponse;
-                //TypeCar
+                await _baseRepository.Update(car);
+                return new BaseResponse<Car>()
+                {
+                    Data = car,
+                    StatusCode = StatusCode.Ok
+                };
+
             }
             catch (Exception ex)
             {
                 return new BaseResponse<Car>()
                 {
                     Description = $"[Edit] : {ex.Message}",
-                    StatusCode = Domain.Enum.StatusCode.InternalServerError
+                    StatusCode =  StatusCode.InternalServerError
                 };
             }
         }
@@ -130,16 +134,16 @@ namespace AutoMarket.BusinessLogic.Implementations
 
             try
             {
-                var car = await _baseRepository.(id);
+                var car = await _baseRepository.GetAll().FirstOrDefaultAsync(x => x.Id == id);
                 if (car != null)
                 {
                     baseResponse.Data = car;
-                    baseResponse.StatusCode = Domain.Enum.StatusCode.Ok;
+                    baseResponse.StatusCode = StatusCode.Ok;
                     return baseResponse;
                 }
 
                 baseResponse.Description = "Car not found";
-                baseResponse.StatusCode = Domain.Enum.StatusCode.CarNotFound;
+                baseResponse.StatusCode = StatusCode.CarNotFound;
                 return baseResponse;
             }
             catch (Exception ex)
@@ -147,70 +151,39 @@ namespace AutoMarket.BusinessLogic.Implementations
                 return new BaseResponse<Car>()
                 {
                     Description = $"[GetCar] : {ex.Message}",
-                    StatusCode = Domain.Enum.StatusCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError
                 };
             }
         }
 
-
-        public async Task<IBaseResponse<Car>> GetCarByName(string name)
+        public IBaseResponse<List<Car>> GetCars()
         {
-           var baseResponse = new BaseResponse<Car>();
             try
             {
-                var carByName = await _carRepository.GetByName(name);
-                if (carByName == null)
+                var cars =  _baseRepository.GetAll().ToList();
+                if (!cars.Any())
                 {
-                    baseResponse.Description = "Car not Found";
-                    baseResponse.StatusCode = Domain.Enum.StatusCode.CarNotFound;
-                    return baseResponse;
+                    return new BaseResponse<List<Car>>()
+                    {
+                        Description = "Найдено 0 элементов",
+                        StatusCode = StatusCode.Ok,
+                    };
                 }
-
-                baseResponse.Data = carByName;
-                baseResponse.StatusCode = Domain.Enum.StatusCode.Ok;
-                return baseResponse;
-            }
-            catch (Exception ex)
-            {
-                return new BaseResponse<Car>()
+                
+                return new BaseResponse<List<Car>>()
                 {
-                    Description = $"[GetCarByName] : {ex.Message}",
-                    StatusCode = Domain.Enum.StatusCode.InternalServerError
+                    Data = cars,
+                    StatusCode = StatusCode.Ok
                 };
             }
-        }
-
-
-        public async Task<IBaseResponse<IEnumerable<Car>>> GetAll()
-        {
-           var baseResponse = new BaseResponse<IEnumerable<Car>>();
-
-            try
-            {
-                var cars = await _carRepository.GetAll();
-                if (cars.Count == 0)
-                {
-                    baseResponse.Description = "Найдено 0 элементов";
-                    baseResponse.StatusCode = Domain.Enum.StatusCode.Ok;
-                    return baseResponse;
-                }
-                baseResponse.Data = cars;
-                baseResponse.StatusCode = StatusCode.Ok;
-                return baseResponse;
-            }
             catch (Exception ex)
             {
-                return new BaseResponse<IEnumerable<Car>>()
+                return new BaseResponse<List<Car>>()
                 {
                     Description = $"[GetCars] : {ex.Message}",
-                    StatusCode = Domain.Enum.StatusCode.InternalServerError
+                    StatusCode = StatusCode.InternalServerError
                 };
-            }   
-        }
-
-        public Task<IBaseResponse<IEnumerable<Car>>> GetCars()
-        {
-            throw new NotImplementedException();
+            }
         }
     }
 }
