@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMarket.Controllers
 {
-   // [ApiController]
+   
+    //[Route("api/[controller]")]
+    //[ApiController]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
@@ -16,11 +18,11 @@ namespace AutoMarket.Controllers
         {
             _carService = carService;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> Select()
         {
-            var response = await _carService.GetCars();
+            var response = _carService.GetCars();
             if (response.StatusCode == Domain.Enum.StatusCode.Ok)
             {
                 return View(response.Data.ToList());
@@ -41,6 +43,7 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize(Roles = "Admin")]
+        //[HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
           var response = await _carService.Delete(id);
