@@ -1,15 +1,13 @@
 ﻿using AutoMarket.BusinessLogic.Interfaces;
 using AutoMarket.Common.ViewModels.Car;
-using AutoMarket.DAL.Interfaces;
-using AutoMarket.Domain.Entity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AutoMarket.Controllers
 {
-   
-    //[Route("api/[controller]")]
+
     //[ApiController]
+    //[Route("[controller]")]
     public class CarController : Controller
     {
         private readonly ICarService _carService;
@@ -43,7 +41,7 @@ namespace AutoMarket.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        //[HttpDelete("{id}")]
+        [HttpDelete]
         public async Task<IActionResult> Delete(int id)
         {
           var response = await _carService.Delete(id);
