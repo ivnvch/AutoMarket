@@ -8,8 +8,8 @@
 }
 
 
-<body style="background-color:dimgrey">
-    <div style="padding: 10px; background-color:darkcyan"></div>
+@*<body>
+    <div style="background-image: url('images/Audi.jpg')"></div>
 <div class="card mb-3">
     <div class="row g-0">
         <div class="col-md-4">
@@ -32,4 +32,25 @@
         </div>
     </div>
 </div>
-</body>
+</body>*@
+<div class="modal-content">
+    <div class="modal-header">
+        <button class="close" data-dismiss="modal" asp-hidden="true">X</button>
+        <h4>Характеристики автомобиля</h4>
+    </div>
+    <div class="modal-body">
+        <dl class="dl-horizontal">
+            <dt>Марка автомобиля:</dt>
+            <dd>@Html.DisplayFor(model=> model.Mark)</dd>
+
+            <dt>Модель автомобиля:</dt>
+            <dd>@Html.DisplayFor(model=> model.Model)</dd>
+
+            <dt>Скорость автомобиля:</dt>
+            <dd>@Html.DisplayFor(model=> model.Speed)</dd>
+
+            <dt>Скорость автомобиля:</dt>
+            <dd>@Html.DisplayFor(model=> model.Price)</dd>
+        </dl>
+    </div>
+</div>
