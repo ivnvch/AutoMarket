@@ -19,6 +19,21 @@
   </head>
 
   <body>
+
+  <div class="modal fade" id="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Информация</h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+            </div>
+        </div>
+    </div>
+</div>
+
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" >
 	    <div class="container">
@@ -141,18 +156,8 @@
   <script src="../js/bootstrap-datepicker.js"></script>
   <script src="../js/scrollax.min.js"></script>
   <script src="../js/main.js"></script>
-    
+  <script src="../js/site.js"></script>
+    <script src="../js/modal.js"></script>
   @await RenderSectionAsync("pageScripts", required: false)
   </body>
 </html>
-@*<head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - CarShop</title>
-  
-</head>
-<div class="container">
-    <main role="main">
-        @RenderBody()
-    </main>
-</div>*@

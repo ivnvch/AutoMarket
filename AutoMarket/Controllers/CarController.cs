@@ -29,15 +29,15 @@ namespace AutoMarket.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCar(int id)
+        public async Task<IActionResult> GetCar(int id, bool isJson)
         {
             var car = await _carService.GetCar(id);
-            if (car.StatusCode == Domain.Enum.StatusCode.Ok)
+            if (isJson)
             {
-                return View(car.Data);
+                return Json(car.Data);
             }
-
-            return RedirectToAction("Error");
+           
+            return PartialView("GetCar", car.Data);
         }
 
         [Authorize(Roles = "Admin")]

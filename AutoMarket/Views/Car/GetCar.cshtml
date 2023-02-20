@@ -1,56 +1,78 @@
-﻿@using AutoMarket.Common.ViewModels.Car
-@model AutoMarket.Domain.Entity.Car
-@*@model AutoMarket.Common.ViewModels.Car.CarViewModel
-*@
+﻿@model AutoMarket.Common.ViewModels.Car.CarViewModel
+
 @{
     ViewBag.Title = "Сведения об Автомобиле";
     Layout = null;
 }
 
 
-@*<body>
-    <div style="background-image: url('images/Audi.jpg')"></div>
-<div class="card mb-3">
-    <div class="row g-0">
-        <div class="col-md-4">
-            <img src="https://fikiwiki.com/uploads/posts/2022-02/1644909390_10-fikiwiki-com-p-kartinki-mashini-audi-11.jpg" 
-                 class="img-fluid rounded-start rounded" alt="@Model?.Mark" width="250px">
-        </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <h5 class="card-title text-center">@Model?.Mark</h5>
-                <p class="card-text"><b>Описание: </b>@Model?.Description</p>
-                <p class="card-text"><b>Стоимость: </b>@Model?.Price ₽</p>
-                <p class="card-text"><b>Тип: </b>@Model?.TypeCar</p>
-                <p class="card-text"><b>Модель: </b>@Model.Model</p>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card-body">
-                <p class="card-text"><b>Описание: </b>@Model?.Description</p>
-            </div>
+<form>
+    <div class="row">
+        <div class="col-md-12">
+            <img src=".//images/Audi.jpg"
+                 class="img-fluid rounded-start rounded">
         </div>
     </div>
-</div>
-</body>*@
-<div class="modal-content">
-    <div class="modal-header">
-        <button class="close" data-dismiss="modal" asp-hidden="true">X</button>
-        <h4>Характеристики автомобиля</h4>
+    <div class="row">
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Mark" class="col-form-label"></label>
+            <input type="text" class="form-control" asp-for="@Model.Mark">
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Model" class="col-form-label"></label>
+            <input class="form-control" asp-for="@Model.Model"/>
+        </div>
+        <div class="form-group col-md-4">
+            <label asp-for="@Model.Price" class="col-form-label"></label>
+            <input type="text" class="form-control" asp-for="@Model.Price" />
+        </div>
     </div>
-    <div class="modal-body">
-        <dl class="dl-horizontal">
-            <dt>Марка автомобиля:</dt>
-            <dd>@Html.DisplayFor(model=> model.Mark)</dd>
-
-            <dt>Модель автомобиля:</dt>
-            <dd>@Html.DisplayFor(model=> model.Model)</dd>
-
-            <dt>Скорость автомобиля:</dt>
-            <dd>@Html.DisplayFor(model=> model.Speed)</dd>
-
-            <dt>Скорость автомобиля:</dt>
-            <dd>@Html.DisplayFor(model=> model.Price)</dd>
-        </dl>
+    <div class="row">
+        <div class="form-group col-md-12">
+            <label asp-for="@Model.Description" class="col-form-label"></label>
+            <textarea type="text" class="form-control" asp-for="@Model.Description"></textarea>
+        </div>
     </div>
-</div>
+   @* <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.TypeCar" class="col-form-label"></label>
+            <select class="form-control" id="carTypeId2">
+                <option value="@Model.TypeCar">@Model.TypeCar</option>
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <label asp-for="@Model.DateCreate" class="col-form-label"></label>
+            <input class="form-control" asp-for="@Model.DateCreate"/>
+        </div>
+    </div>*@
+</form>
+
+<style>
+    label {
+        color: black;
+    }
+</style>
+
+<script src="~/lib/select2/js/select2.full.min.js"></script>
+<script>
+$('#carTypeId2').select2({
+   placeholder: "Выберите тип",
+   minimumInputLength: 0,
+   allowClear: true,
+   ajax: {
+        type: "POST",
+        url: "@Url.Action("GetTypes", "Car")",
+        dataType: "json",
+        processResults: function (result) {
+            return {
+                results: $.map(result, function (val, index) {
+                    return {
+                        id: index, 
+                        text: val
+                    };
+                }),
+            };
+        }
+    }
+});
+</script>

@@ -7,12 +7,29 @@
     Layout = "_Layout";
 }
 
+@{
+    var cardStyle = "col-md-12";
+    if (Model != null)
+    {
+        switch (Model.Count)
+        {
+            case 2:
+                cardStyle = "col-md-6";
+                break;
+            case 3:
+                cardStyle = "col-md-4";
+                break;
+        }
+    }
+}
+
 <style>
     .card-buttons-group {
         text-align: right;
         padding: 10px;
     }
 </style>
+
 
 <div class="card-buttons-group">
     <button class="btn btn-danger" id='hideCardsId'>Скрыть</button>
@@ -62,28 +79,27 @@
 }
 else
 {
-    <div class="row">
+   <div class="row">
         @foreach (var car in Model)
         {
-            <div class="row row-cols-1 col-md-4 text-center">
-                <div class="col" style="padding: 30px;">
+            <div class="row row-cols-1 @cardStyle text-center">
+                <div class="col" style="padding: 10px;">
                     <div class="card">
-                        <img src="https://fikiwiki.com/uploads/posts/2022-02/1644909390_10-fikiwiki-com-p-kartinki-mashini-audi-11.jpg" class="card-img-top" alt="@car.Mark">
+                        <img src="../images/Audi.jpg" />
                         <div class="card-body">
-                            <h5 class="card-title">@car.Mark</h5>
-                           @* <p class="card-text">@car.Description</p>*@
+                            <h5 class="card-title">Название: @car.Mark</h5>
+                           @* <p class="card-text">Краткое описание: @car.Description.Substring(0, 40) ...</p>*@
                         </div>
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Стоимость: @car.Price ₽</li>
-                            <li class="list-group-item">@car.TypeCar</li>
+                            <li class="list-group-item">Модель: @car.Model</li>
                         </ul>
                         <div class="card-body">
-                            <a asp-controller="Car" asp-action="GetCar" asp-route-id="@car.Id" class="card-link">Перейти</a>
+                            <button class="btn btn-primary" onclick="openModal({ url: '/Car/GetCar', data: '@car.Id' })"
+                                    data-toggle="ajax-modal" data-target="Modal">Открыть</button>
                             @if (User.IsInRole("Admin"))
                             {
-                                <hr/>
                                 <a asp-controller="Car" asp-action="Delete" asp-route-id="@car.Id" class="btn btn-danger">Удалить</a>
-                                <a asp-controller="Car" asp-action="Save" asp-route-id="@car.Id" class="btn btn-primary">Изменить</a>
                             }
                         </div>
                     </div>
