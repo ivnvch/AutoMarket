@@ -1,0 +1,12 @@
+E:\Visual Studio\AutoMarket\AutoMarket.Common\bin\Debug\net6.0\AutoMarket.Common.deps.json
+E:\Visual Studio\AutoMarket\AutoMarket.Common\bin\Debug\net6.0\AutoMarket.Common.dll
+E:\Visual Studio\AutoMarket\AutoMarket.Common\bin\Debug\net6.0\AutoMarket.Common.pdb
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.csproj.AssemblyReference.cache
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.GeneratedMSBuildEditorConfig.editorconfig
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.AssemblyInfoInputs.cache
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.AssemblyInfo.cs
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.csproj.CoreCompileInputs.cache
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.dll
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\refint\AutoMarket.Common.dll
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\AutoMarket.Common.pdb
+E:\Visual Studio\AutoMarket\AutoMarket.Common\obj\Debug\net6.0\ref\AutoMarket.Common.dll
